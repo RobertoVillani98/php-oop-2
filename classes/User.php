@@ -1,19 +1,21 @@
 <?php
-
 class User
 {
     protected $name;
     protected $surname;
     protected $email;
-    protected $creditCards;
     protected $userType = "standard";
+    protected $creditCards;
+    protected $discount = 20;
+    protected $cart;
 
-    function __construct($_name, $_surname, $_email, $_creditCards)
+    function __construct($_name, $_surname, $_email, $_creditCards = [], $_cart = [])
     {
         $this->name = $_name;
         $this->surname = $_surname;
         $this->email = $_email;
         $this->creditCards = $_creditCards;
+        $this->cart = $_cart;
     }
 
     function getName()
@@ -31,9 +33,9 @@ class User
         return $this->email;
     }
 
-    function getCreditCards()
+    function addCreditCard($newCard)
     {
-        return $this->creditCards;
+        $this->creditCards[] = $newCard;
     }
 
     function getUserType()
@@ -44,5 +46,20 @@ class User
     function getDiscount()
     {
         return 0;
+    }
+
+    function getCart()
+    {
+        return $this->cart;
+    }
+
+    function addToCart($_product)
+    {
+        $this->cart[] = $_product;
+    }
+
+    function getCreditCards()
+    {
+        return $this->creditCards;
     }
 }

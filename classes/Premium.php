@@ -1,10 +1,17 @@
-<?php 
+<?php
 
-class Premium extends user {
+class Premium extends user
+{
     protected $userType = "premium";
 
-    function getDiscount()
+    public function addToCart($_product)
     {
-        return 10;
+        $_product->setDiscount($this->_discount);
+        $this->cart[] = $_product;
+    }
+
+    function __construct()
+    {
+        $this->_discount = 20;
     }
 }
